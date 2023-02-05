@@ -8,7 +8,8 @@ import { ReviewModel } from './review.model/review.model';
 @Injectable()
 export class ReviewService {
   constructor(
-    @InjectModel(ReviewModel) private readonly reviewModel: ModelType<ReviewModel>,
+    @InjectModel(ReviewModel)
+    private readonly reviewModel: ModelType<ReviewModel>,
   ) {}
 
   async create(dto: CreateReviewDto): Promise<DocumentType<ReviewModel>> {
@@ -24,6 +25,14 @@ export class ReviewService {
   ): Promise<DocumentType<ReviewModel>[]> {
     return this.reviewModel
       .find({ productId: new Types.ObjectId(productId) })
+      .exec();
+  }
+
+  async deleteByProductId(productId: string) {
+    return this.reviewModel
+      .deleteMany({
+        productId: new Types.ObjectId(productId),
+      })
       .exec();
   }
 }
