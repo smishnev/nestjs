@@ -1,4 +1,5 @@
-import { InjectModel, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from 'nestjs-typegoose';
 import { ModelType, DocumentType } from '@typegoose/typegoose/lib/types';
 import { Types } from 'mongoose';
 import { CreateReviewDto } from './dto/create-review.dto';
