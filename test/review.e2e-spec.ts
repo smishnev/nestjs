@@ -68,7 +68,7 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/review/byProduct/:productId (GET) - fail', async (doe) => {
+  it('/review/byProduct/:productId (GET) - fail', async () => {
     return request(app.getHttpServer())
       .get('/review/byProduct/' + new Types.ObjectId().toHexString())
       .expect(200)

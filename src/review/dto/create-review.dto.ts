@@ -6,11 +6,11 @@ export class CreateReviewDto {
   @IsString()
   title: string;
 
-  @Max(5)
-  @Min(1)
   @IsString()
   description: string;
 
+  @Max(5)
+  @Min(1)
   @IsNumber()
   rating: number;
 
