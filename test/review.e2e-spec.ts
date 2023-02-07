@@ -29,7 +29,7 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/review/create (POST) - success', async (done) => {
+  it('/review/create (POST) - success', async () => {
     return request(app.getHttpServer())
       .post('/review/create')
       .send(testDto)
@@ -37,37 +37,33 @@ describe('AppController (e2e)', () => {
       .then(({ body }: request.Response) => {
         createdId = body._id;
         expect(createdId).toBeDefined();
-        done();
       });
   });
 
-  it('/review/create (POST) - fail', async (done) => {
+  it('/review/create (POST) - fail', async () => {
     return request(app.getHttpServer())
       .post('/review/create')
       .send({ ...testDto, rating: 0 })
       .expect(400)
       .then(({ body }: request.Response) => {
-        done();
       });
   });
 
-  it('/review/byProduct/:productId (GET) - success', async (done) => {
+  it('/review/byProduct/:productId (GET) - success', async () => {
     return request(app.getHttpServer())
       .get('/review/byProduct/' + productId)
       .expect(200)
       .then(({ body }: request.Response) => {
         expect(body.length).toBe(1);
-        done();
       });
   });
 
-  it('/review/byProduct/:productId (GET) - fail', async (done) => {
+  it('/review/byProduct/:productId (GET) - fail', async () => {
     return request(app.getHttpServer())
       .get('/review/byProduct/' + new Types.ObjectId().toHexString())
       .expect(200)
       .then(({ body }: request.Response) => {
         expect(body.length).toBe(0);
-        done();
       });
   });
 
